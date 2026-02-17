@@ -24,14 +24,14 @@ Simple CLI usage
 
 ## Install
 
-## 1.Install with executables
-### Linux / macOS
-./install.sh
+### 1.Install with executables
+#### Linux / macOS
+./install_linux_macos.sh
 
-### Windows
-powershell -ExecutionPolicy Bypass -File install.ps1
+#### Windows
+powershell -ExecutionPolicy Bypass -File install_win.ps1
 
-## 2.Install with CMake
+### 2.Install with CMake
 cmake -B build && cmake --build build && sudo cmake --install build
 
 
