@@ -22,33 +22,17 @@ Simple CLI usage
 
 ---
 
-## Installation
+## Install
 
-Quick Install (Recommended)
+## 1.Install with executables
+### Linux / macOS
+./install.sh
 
-curl -fsSL https://lamon.dev/install.sh | sh
+### Windows
+powershell -ExecutionPolicy Bypass -File install.ps1
 
-This installs lamon globally in /usr/local/bin.
-
-
----
-
-## Manual Install
-
-1. Download the latest release from GitHub
-
-
-2. Make executable:
-
-
-
-chmod +x lamon
-
-3. Move to PATH:
-
-
-
-sudo mv lamon /usr/local/bin/
+## 2.Install with CMake
+cmake -B build && cmake --build build && sudo cmake --install build
 
 
 ---
