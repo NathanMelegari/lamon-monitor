@@ -1,0 +1,31 @@
+Build files
+
+/build/ /bin/ /out/ /dist/
+
+CMake
+
+CMakeFiles/ CMakeCache.txt cmake_install.cmake Makefile
+
+Compiled binaries
+
+*.o *.obj *.exe *.dll *.so *.dylib lamon
+
+Logs
+
+*.log
+
+OS files
+
+.DS_Store Thumbs.db
+
+IDE
+
+.vscode/ .idea/ *.swp
+
+Node (if using scripts)
+
+node_modules/ package-lock.json
+
+Temp files
+
+*.tmp *.temp
