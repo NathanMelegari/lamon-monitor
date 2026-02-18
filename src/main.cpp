@@ -8,6 +8,8 @@
 #include "../include/request.hpp"
 #include "../include/stats.hpp"
 
+//THE HELP COMMAND
+//new features coming soon
 void showHelp() {
 	std::cout << R"(
 	Lamon - API Monitor CLI
@@ -23,6 +25,7 @@ void showHelp() {
 	)";
 };
 
+//RESTORE THE CURSOR CLOSING THE PROGRAM
 void restore_cursor(int) {
 	std::cout << "\033[?25h";
 	std::cout.flush();
@@ -44,6 +47,8 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 	*/
+
+	//CALL THE showHelp FUNCTION
 	if(argc == 1 || std::string(argv[1]) == "--help" || std::string(argv[1]) == "-h") {
 		showHelp();
 		return 0;
@@ -54,9 +59,11 @@ int main(int argc, char *argv[]) {
 
 	curl_global_init(CURL_GLOBAL_DEFAULT);
 
+	//PRINCIPAL LOOP
+	//actually update in 1 second
 	while (true) {
 		std::cout << "\033[2J\033[H";
-        	std::cout << " Lamon Monitor | " << url << "\n";
+        	std::cout << " Lamon - API Monitor | " << url << "\n";
         	std::cout << "____________________________________________________________________________\n\n";
 
 		request_api(stats, url);
