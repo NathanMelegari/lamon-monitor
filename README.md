@@ -1,22 +1,24 @@
-# ![Preview](./assets/lamon_logo.png) Lamon
-Lamon is a monitor for viewing API performance directly from the terminal.
+<p align="center">
+  <img src="./assets/lamon_logo.png" width="220">
+</p>
 
-Lightweight. Fast. No browser required.
+<h1 align="center">Lamon</h1>
+<p align="center">
+Real-time API monitoring from your terminal.
+</p>
+
+Lamon is a lightweight CLI tool for monitoring API latency, status codes, and uptime in real time directly from the terminal.
 
 
 ---
 
 ## Features
 
-Monitor API latency and status in real time
-
-Works directly in the terminal
-
-Lightweight and fast
-
-No UI, no browser, no bloat
-
-Simple CLI usage
+- Monitor API latency and status in real time
+- Works directly in the terminal
+- Lightweight and fast
+- No UI, no browser, no bloat
+- Simple CLI usage
 
 
 
@@ -24,15 +26,23 @@ Simple CLI usage
 
 ## Install
 
-### 1.Install with executables
-#### Linux / macOS
-./install_linux_macos.sh
+Only Linux now
+MacOS and Windows coming soon.
 
-#### Windows
-powershell -ExecutionPolicy Bypass -File install_win.ps1
+### Linux
+#### 1.Install the executable
+```bash
+chmod +x lamon-v1.0.0-linux-x86_64
+mv lamon-v1.0.0-linux-x86_64 lamon
+sudo mv lamon /usr/local/bin
+```
 
-### 2.Install with CMake
+#### 2.Install with CMake
+```bash
+git clone https://github.com/NathanMelegari/lamon-monitor
+cd lamon-monitor/
 cmake -B build && cmake --build build && sudo cmake --install build
+```
 
 
 ---
@@ -41,7 +51,7 @@ cmake -B build && cmake --build build && sudo cmake --install build
 
 ![Preview](./assets/run_example.png)
 
-Example output:
+### Example output:
 
 ![Preview](./assets/output_example.png)
 
@@ -57,15 +67,11 @@ When debugging APIs, opening a browser or heavy tools slows you down. Lamon keep
 
 ## Roadmap
 
-Multiple endpoint monitoring
-
-Graph mode
-
-JSON output
-
-Config file support
-
-Alerts
+- Multiple endpoint monitoring
+- Graph mode
+- JSON output
+- Config file support
+- Alerts
 
 
 
@@ -76,14 +82,8 @@ Alerts
 Pull requests are welcome.
 
 1. Fork the repo
-
-
 2. Create a branch
-
-
 3. Commit changes
-
-
 4. Open a PR
 
 
