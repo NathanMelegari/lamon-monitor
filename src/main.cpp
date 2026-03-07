@@ -23,39 +23,43 @@ void showHelp() {
 	Examples:
 		lamon https://api.github.com
 	)";
-};
+}
 
 //RESTORE THE CURSOR CLOSING THE PROGRAM
 void restore_cursor(int) {
 	std::cout << "\033[?25h";
 	std::cout.flush();
 	std::exit(0);
-};
+}
 
 int main(int argc, char *argv[]) {
-	
-	std::signal(SIGINT, restore_cursor);
-	std::cout << "\033[?25l";
 
 	if(argc < 2) {
-		std::cout << "Usage: lamon <url>\n";
+		std::cout << "Use: lamon \033[36m[url]\033[0m" << std::endl;
 		return 1;
 	}
-	/*
-	if (argc > 1 && std::string(argv[1]) == "--version") {
-		std::cout << "lamon 0.1.0\n";
-		return 0;
-	}
-	*/
 
+	std::string usr_arg = argv[1];
+	const std::string url = usr_arg;
+        Stats stats;
+
+	if (usr_arg == "--version" || usr_arg == "-v") {
+		std::cout << "lamon 1.1" << std::endl;
+		return 1;
+	}
 	//CALL THE showHelp FUNCTION
-	if(argc == 1 || std::string(argv[1]) == "--help" || std::string(argv[1]) == "-h") {
+	else if(usr_arg == "--help" || usr_arg == "-h") {
 		showHelp();
-		return 0;
+		return 1;
+	}
+	else if(usr_arg.empty() || (usr_arg.rfind("http://", 0) != 0 && usr_arg.rfind("https://", 0) != 0)) {
+		std::cout << "Invalid argument!" << std::endl;
+		std::cout << "Use: lamon \033[36m[--help]\033[0m" << std::endl;
+		return 1;
 	}
 
-	const char* url = argv[1];
-	Stats stats;
+	std::signal(SIGINT, restore_cursor);
+        std::cout << "\033[?25l";
 
 	curl_global_init(CURL_GLOBAL_DEFAULT);
 
@@ -63,13 +67,11 @@ int main(int argc, char *argv[]) {
 	//actually update in 1 second
 	while (true) {
 		std::cout << "\033[2J\033[H";
-        	std::cout << " Lamon - API Monitor | " << url << "\n";
-        	std::cout << "____________________________________________________________________________\n\n";
 
-		request_api(stats, url);
+		Request::request_api(stats, url);
+		Request::show_monitor(stats, url);		
 
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
-	curl_global_cleanup();
-	
-};
+	curl_global_cleanup();	
+}
