@@ -1,12 +1,10 @@
 #include <curl/curl.h>
 #include <curl/easy.h>
 #include <iostream>
-#include <iomanip>
-#include <ostream>
-#include "../include/request.hpp"
-#include "../include/stats.hpp"
+#include "./include/trate_api_incl.hpp"
+#include "./include/stats.hpp"
 
-void Request::request_api(Stats& stats, const std::string& url) {
+void Api::request_api(Stats& stats, const std::string& url) {
 
 	//INITALIZE libcurl
 	CURL* curl = curl_easy_init();
@@ -31,13 +29,13 @@ void Request::request_api(Stats& stats, const std::string& url) {
 		stats.total_erros++;
 		std::cout << "\a" << std::flush;
 	} else {
-		update_stats(stats, curl);
+		Api::update_stats(stats, curl);
 	}
 
 	curl_easy_cleanup(curl);
 
 }
-
+/*
 void Request::update_stats(Stats& stats, CURL* curl) {
 
 	//GET DATA FROM libcurl
@@ -76,4 +74,4 @@ void Request::show_monitor(const Stats& stats, const std::string& url) {
 	std::cout << std::setw(20) << "Total Requests: " << stats.total_requests << std::endl;
 	std::cout << std::setw(20) << "Total Errors: " << stats.total_erros << std::endl;
 	std::cout << std::setw(20) << "Errors Rate: " << stats.errors_rate << "%" << std::endl;
-}
+}*/

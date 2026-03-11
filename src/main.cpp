@@ -5,25 +5,10 @@
 #include <iostream>
 #include <csignal>
 #include <string>
-#include "../include/request.hpp"
-#include "../include/stats.hpp"
+#include "./trate_api/include/trate_api_incl.hpp"
+#include "./trate_api/include/stats.hpp"
+#include "lamon_commands.hpp"
 
-//THE HELP COMMAND
-//new features coming soon
-void showHelp() {
-	std::cout << R"(
-	Lamon - API Monitor CLI
-
-	Usage:
-		lamon [URL]
-	
-	Options:
-		-h, --help	Show this help message
-
-	Examples:
-		lamon https://api.github.com
-	)";
-}
 
 //RESTORE THE CURSOR CLOSING THE PROGRAM
 void restore_cursor(int) {
@@ -42,14 +27,15 @@ int main(int argc, char *argv[]) {
 	std::string usr_arg = argv[1];
 	const std::string url = usr_arg;
         Stats stats;
+	Api api;
 
 	if (usr_arg == "--version" || usr_arg == "-v") {
-		std::cout << "lamon 1.1" << std::endl;
+		Command::view_version();
 		return 1;
 	}
 	//CALL THE showHelp FUNCTION
 	else if(usr_arg == "--help" || usr_arg == "-h") {
-		showHelp();
+		Command::help_msg();
 		return 1;
 	}
 	else if(usr_arg.empty() || (usr_arg.rfind("http://", 0) != 0 && usr_arg.rfind("https://", 0) != 0)) {
@@ -68,8 +54,8 @@ int main(int argc, char *argv[]) {
 	while (true) {
 		std::cout << "\033[2J\033[H";
 
-		Request::request_api(stats, url);
-		Request::show_monitor(stats, url);		
+		api.request_api(stats, url);
+		api.show_monitor(stats, url);	
 
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
