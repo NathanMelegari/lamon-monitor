@@ -26,44 +26,7 @@ Lamon is a lightweight CLI tool for monitoring API latency, status codes, and up
 
 ## Install
 
-<p>Only Linux now.</p>
-<p>MacOS and Windows coming soon.</p>
 
-### Linux
-#### 1. Global install
-
-```bash
-git clone https://github.com/NathanMelegari/lamon-monitor
-cd lamon-monitor/
-cmake -S . -B build
-cmake --build build
-sudo cmake --install build
-```
-Then:
-```bash
-lamon <URL>
-```
-
-#### 2. User install
-
-1. Install binary
-2. Go to download directory
-3. Run the command below:
-```bash
-chmod +x lamon-1.0.0-linux-x86_64
-mv lamon-1.0.0-linux-x86_64 lamon
-mkdir -p ~/.local/bin
-mv lamon ~/.local/bin
-```
-Make sure ~/.local/bin is in your PATH:
-export PATH="$HOME/.local/bin:$PATH"
-
-Then:
-```bash
-lamon <URL>
-```
-
-#### 3. Run without install
 ```bash
 git clone https://github.com/NathanMelegari/lamon-monitor
 cd lamon-monitor/
