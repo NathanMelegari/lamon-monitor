@@ -30,12 +30,13 @@ Lamon is a lightweight CLI tool for monitoring API latency, status codes, and up
 ```bash
 git clone https://github.com/NathanMelegari/lamon-monitor
 cd lamon-monitor/
-cmake -B build && cmake --build build
-cd build/
+cmake -S . -B build
+cmake --build build --config Release
+./build/lamon
 ```
 Then:
 ```bash
-./lamon <URL>
+./lamon <url>
 ```
 
 
